@@ -136,5 +136,5 @@ chmod a-x "$dest/$bn"
 find %{buildroot} -name *.a -delete
 
 %changelog
-* Fri Oct 19 2018 Shlomi Fish <shlomif@shlomifish.org> - 5.0.0-1.fc30
+* Fri Oct 19 2018 Shlomi Fish <shlomif@shlomifish.org> - 5.0.0-1
 - Adapted from the Mageia .spec.
