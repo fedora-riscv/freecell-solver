@@ -6,7 +6,6 @@ Name: freecell-solver
 Version: 5.0.0
 Release: 1%{?dist}
 License: MIT
-Group: Amusement/Games
 Source0: http://fc-solve.shlomifish.org/downloads/fc-solve/%{name}-%{version}.tar.xz
 Patch1: freecell-solver-no-rpath.diff
 URL: http://fc-solve.shlomifish.org/
