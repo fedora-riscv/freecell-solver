@@ -4,7 +4,7 @@
 
 Name: freecell-solver
 Version: 5.0.0
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: MIT
 Source0: http://fc-solve.shlomifish.org/downloads/fc-solve/%{name}-%{version}.tar.xz
 Patch1: freecell-solver-no-rpath.diff
@@ -135,5 +135,8 @@ chmod a-x "$dest/$bn"
 find %{buildroot} -name *.a -delete
 
 %changelog
+* Thu Jan 31 2019 Fedora Release Engineering <releng@fedoraproject.org> - 5.0.0-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_30_Mass_Rebuild
+
 * Fri Oct 19 2018 Shlomi Fish <shlomif@shlomifish.org> - 5.0.0-1
 - Adapted from the Mageia .spec.
