@@ -3,12 +3,12 @@
 %global develname lib%{name}-devel
 
 Name: freecell-solver
-Version: 5.0.0
-Release: 2%{?dist}
+Version: 5.4.0
+Release: 1%{?dist}
 License: MIT
-Source0: http://fc-solve.shlomifish.org/downloads/fc-solve/%{name}-%{version}.tar.xz
+Source0: https://fc-solve.shlomifish.org/downloads/fc-solve/%{name}-%{version}.tar.xz
 Patch1: freecell-solver-no-rpath.diff
-URL: http://fc-solve.shlomifish.org/
+URL: https://fc-solve.shlomifish.org/
 Summary: The Freecell Solver Executable
 
 BuildRequires: cmake
