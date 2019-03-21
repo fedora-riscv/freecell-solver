@@ -33,6 +33,7 @@ BuildRequires: perl(strict)
 BuildRequires: perl(Template)
 BuildRequires: perl(warnings)
 BuildRequires: perl-devel
+BuildRequires: python3-pysol-cards
 BuildRequires: python3-random2
 BuildRequires: python3-rpm-macros
 BuildRequires: python3dist(six)
