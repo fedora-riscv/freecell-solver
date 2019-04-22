@@ -4,10 +4,11 @@
 
 Name: freecell-solver
 Version: 5.6.0
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: MIT
 Source0: https://fc-solve.shlomifish.org/downloads/fc-solve/%{name}-%{version}.tar.xz
 Patch1: freecell-solver-no-rpath.diff
+Patch2: freecell-solver-avoid-test-dependencies.patch
 URL: https://fc-solve.shlomifish.org/
 Summary: The Freecell Solver Executable
 
@@ -23,21 +24,48 @@ BuildRequires: perl(Carp)
 BuildRequires: perl(Cwd)
 BuildRequires: perl(Data::Dumper)
 BuildRequires: perl(Digest::SHA)
+BuildRequires: perl(Env::Path)
 BuildRequires: perl(File::Path)
 BuildRequires: perl(File::Spec)
+BuildRequires: perl(File::Which)
+BuildRequires: perl(Games::Solitaire::Verify)
+BuildRequires: perl(Games::Solitaire::Verify::Solution)
+BuildRequires: perl(Inline)
+BuildRequires: perl(Inline::C)
+BuildRequires: perl(IPC::Open2)
 BuildRequires: perl(lib)
 BuildRequires: perl(List::MoreUtils)
+BuildRequires: perl(Moo)
+BuildRequires: perl(MooX)
+BuildRequires: perl(MooX::late)
 BuildRequires: perl(parent)
 BuildRequires: perl(Path::Tiny)
+BuildRequires: perl(Storable)
 BuildRequires: perl(strict)
+BuildRequires: perl(String::ShellQuote)
+# BuildRequires: perl(Task::FreecellSolver::Testing)
 BuildRequires: perl(Template)
+BuildRequires: perl(Test::Data::Split)
+BuildRequires: perl(Test::Data::Split::Backend::Hash)
+BuildRequires: perl(Test::Data::Split::Backend::ValidateHash)
+BuildRequires: perl(Test::Differences)
+BuildRequires: perl(Test::More)
+BuildRequires: perl(Test::RunValgrind)
+BuildRequires: perl(Test::TrailingSpace)
+BuildRequires: perl(Test::Trap)
 BuildRequires: perl(warnings)
+BuildRequires: perl(YAML::XS)
 BuildRequires: perl-devel
+BuildRequires: python3-cffi
 BuildRequires: python3-pysol-cards
 BuildRequires: python3-random2
 BuildRequires: python3-rpm-macros
 BuildRequires: python3dist(six)
+BuildRequires: python3dist(pycotap)
 Requires: %{libname}%{?_isa} = %{version}-%{release}
+# BuildRequires: tap-devel
+BuildRequires: the_silver_searcher
+BuildRequires: valgrind
 
 %description
 The Freecell Solver package contains the fc-solve executable which is
@@ -116,11 +144,16 @@ Freecell Solver from within your programs.
 %prep
 %setup -q
 %patch1 -p1 -b .rem-rpath
+%patch2 -p1 -b .avoid-test-deps
 
 %build
 # The game limit flags are recommended by the PySolFC README.
-%cmake -DLOCALE_INSTALL_DIR=%{_datadir}/locale -DLIB_INSTALL_DIR=%{_libdir} -DMAX_NUM_FREECELLS=8 -DMAX_NUM_STACKS=20 -DMAX_NUM_INITIAL_CARDS_IN_A_STACK=60 -DFCS_WITH_TEST_SUITE=OFF
+%cmake -DLOCALE_INSTALL_DIR=%{_datadir}/locale -DLIB_INSTALL_DIR=%{_libdir} -DMAX_NUM_FREECELLS=8 -DMAX_NUM_STACKS=20 -DMAX_NUM_INITIAL_CARDS_IN_A_STACK=60
 %make_build
+
+%check
+%__rm -f t/t/tidyall.t
+perl ./run-tests.pl
 
 %install
 %make_install
