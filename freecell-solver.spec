@@ -3,8 +3,8 @@
 %global develname lib%{name}-devel
 
 Name: freecell-solver
-Version: 5.6.0
-Release: 2%{?dist}
+Version: 5.8.0
+Release: 1%{?dist}
 License: MIT
 Source0: https://fc-solve.shlomifish.org/downloads/fc-solve/%{name}-%{version}.tar.xz
 Patch1: freecell-solver-no-rpath.diff
@@ -19,13 +19,14 @@ BuildRequires: gmp-devel
 BuildRequires: gperf
 BuildRequires: make
 BuildRequires: perl(autodie)
-BuildRequires: perl(lib)
 BuildRequires: perl(Carp)
+BuildRequires: perl(CHI)
 BuildRequires: perl(Cwd)
 BuildRequires: perl(Data::Dumper)
 BuildRequires: perl(Digest::SHA)
 BuildRequires: perl(Env::Path)
 BuildRequires: perl(File::Path)
+BuildRequires: perl(lib)
 BuildRequires: perl(File::Spec)
 BuildRequires: perl(File::Which)
 BuildRequires: perl(Games::Solitaire::Verify)
