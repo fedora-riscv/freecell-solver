@@ -3,12 +3,11 @@
 %global develname lib%{name}-devel
 
 Name: freecell-solver
-Version: 5.8.0
+Version: 5.10.0
 Release: 1%{?dist}
 License: MIT
 Source0: https://fc-solve.shlomifish.org/downloads/fc-solve/%{name}-%{version}.tar.xz
 Patch1: freecell-solver-no-rpath.diff
-Patch2: freecell-solver-avoid-test-dependencies.patch
 URL: https://fc-solve.shlomifish.org/
 Summary: The Freecell Solver Executable
 
@@ -57,6 +56,7 @@ BuildRequires: perl(Test::Trap)
 BuildRequires: perl(warnings)
 BuildRequires: perl(YAML::XS)
 BuildRequires: perl-devel
+BuildRequires: pkgconfig(cmocka)
 BuildRequires: python3-cffi
 BuildRequires: python3-pysol-cards
 BuildRequires: python3-random2
@@ -145,7 +145,6 @@ Freecell Solver from within your programs.
 %prep
 %setup -q
 %patch1 -p1 -b .rem-rpath
-%patch2 -p1 -b .avoid-test-deps
 
 %build
 # The game limit flags are recommended by the PySolFC README.
