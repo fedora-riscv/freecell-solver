@@ -3,11 +3,10 @@
 %global develname lib%{name}-devel
 
 Name: freecell-solver
-Version: 5.10.0
-Release: 2%{?dist}
+Version: 5.12.0
+Release: 1%{?dist}
 License: MIT
 Source0: https://fc-solve.shlomifish.org/downloads/fc-solve/%{name}-%{version}.tar.xz
-Patch1: freecell-solver-no-rpath.diff
 URL: https://fc-solve.shlomifish.org/
 Summary: The Freecell Solver Executable
 
@@ -58,6 +57,7 @@ BuildRequires: perl(YAML::XS)
 BuildRequires: perl-devel
 BuildRequires: pkgconfig(cmocka)
 BuildRequires: python3-cffi
+BuildRequires: python3-freecell_solver
 BuildRequires: python3-pysol-cards
 BuildRequires: python3-random2
 BuildRequires: python3-rpm-macros
@@ -144,11 +144,10 @@ Freecell Solver from within your programs.
 
 %prep
 %setup -q
-%patch1 -p1 -b .rem-rpath
 
 %build
 # The game limit flags are recommended by the PySolFC README.
-%cmake -DLOCALE_INSTALL_DIR=%{_datadir}/locale -DLIB_INSTALL_DIR=%{_libdir} -DMAX_NUM_FREECELLS=8 -DMAX_NUM_STACKS=20 -DMAX_NUM_INITIAL_CARDS_IN_A_STACK=60
+%cmake -DLOCALE_INSTALL_DIR=%{_datadir}/locale -DLIB_INSTALL_DIR=%{_libdir} -DMAX_NUM_FREECELLS=8 -DMAX_NUM_STACKS=20 -DMAX_NUM_INITIAL_CARDS_IN_A_STACK=60 -DDISABLE_APPLYING_RPATH=TRUE
 %make_build
 
 %check
