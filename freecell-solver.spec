@@ -3,7 +3,7 @@
 %global develname lib%{name}-devel
 
 Name: freecell-solver
-Version: 5.12.0
+Version: 5.14.0
 Release: 1%{?dist}
 License: MIT
 Source0: https://fc-solve.shlomifish.org/downloads/fc-solve/%{name}-%{version}.tar.xz
@@ -77,6 +77,8 @@ This package also contains command line executables to generate the initial
 boards of several popular Freecell implementations.
 
 %files
+%{_bindir}/dbm-fc-solver
+%{_bindir}/depth-dbm-fc-solver
 %{_bindir}/fc-solve
 %{_bindir}/find-freecell-deal-index.py
 %{_bindir}/freecell-solver-fc-pro-range-solve
@@ -135,7 +137,6 @@ You should install it if you are a game developer who would like to use
 Freecell Solver from within your programs.
 
 %files -n %{develname}
-%{_includedir}/freecell-solver/
 %{_includedir}/freecell-solver/*.h
 %{_libdir}/pkgconfig/*.pc
 %{_libdir}/libfreecell-solver.so
