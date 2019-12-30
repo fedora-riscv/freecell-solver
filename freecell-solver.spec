@@ -3,7 +3,7 @@
 %global develname lib%{name}-devel
 
 Name: freecell-solver
-Version: 5.14.0
+Version: 5.16.0
 Release: 1%{?dist}
 License: MIT
 Source0: https://fc-solve.shlomifish.org/downloads/fc-solve/%{name}-%{version}.tar.xz
@@ -56,6 +56,7 @@ BuildRequires: perl(warnings)
 BuildRequires: perl(YAML::XS)
 BuildRequires: perl-devel
 BuildRequires: pkgconfig(cmocka)
+BuildRequires: pkgconfig(librinutils)
 BuildRequires: python3-cffi
 BuildRequires: python3-freecell_solver
 BuildRequires: python3-pysol-cards
