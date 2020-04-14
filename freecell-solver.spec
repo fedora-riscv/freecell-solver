@@ -3,7 +3,7 @@
 %global develname lib%{name}-devel
 
 Name: freecell-solver
-Version: 5.20.1
+Version: 5.22.1
 Release: 1%{?dist}
 License: MIT
 Source0: https://fc-solve.shlomifish.org/downloads/fc-solve/%{name}-%{version}.tar.xz
@@ -170,6 +170,9 @@ chmod a-x "$dest/$bn"
 find %{buildroot} -name *.a -delete
 
 %changelog
+* Tue Apr 14 2020 Shlomi Fish <shlomif@shlomifish.org> - 5.22.1-1
+- New version
+
 * Tue Jan 28 2020 Fedora Release Engineering <releng@fedoraproject.org> - 5.16.0-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_32_Mass_Rebuild
 
