@@ -3,7 +3,7 @@
 %global develname lib%{name}-devel
 
 Name: freecell-solver
-Version: 5.22.1
+Version: 5.24.0
 Release: 1%{?dist}
 License: MIT
 Source0: https://fc-solve.shlomifish.org/downloads/fc-solve/%{name}-%{version}.tar.xz
