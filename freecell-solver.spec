@@ -3,7 +3,7 @@
 %global develname lib%{name}-devel
 
 Name: freecell-solver
-Version: 5.24.0
+Version: 6.0.1
 Release: 1%{?dist}
 License: MIT
 Source0: https://fc-solve.shlomifish.org/downloads/fc-solve/%{name}-%{version}.tar.xz
@@ -150,14 +150,16 @@ Freecell Solver from within your programs.
 %build
 # The game limit flags are recommended by the PySolFC README.
 %cmake -DLOCALE_INSTALL_DIR=%{_datadir}/locale -DLIB_INSTALL_DIR=%{_libdir} -DMAX_NUM_FREECELLS=8 -DMAX_NUM_STACKS=20 -DMAX_NUM_INITIAL_CARDS_IN_A_STACK=60 -DDISABLE_APPLYING_RPATH=TRUE
-%make_build
+%cmake_build
 
 %check
-%__rm -f t/t/tidyall.t
-perl ./run-tests.pl
+%__rm -f t/t/py-flake8.t t/t/tidyall.t
+src="`pwd`"
+cd "%{__cmake_builddir}"
+perl "$src"/run-tests.pl
 
 %install
-%make_install
+%cmake_install
 bn="fc_solve_find_index_s2ints.py"
 dest="%{buildroot}/%{python3_sitelib}"
 src="%{buildroot}/%{_bindir}/$bn"
@@ -170,6 +172,9 @@ chmod a-x "$dest/$bn"
 find %{buildroot} -name *.a -delete
 
 %changelog
+* Sun Jul 26 2020 Shlomi Fish <shlomif@shlomifish.org> 6.0.1-1
+- New version; convert to cmake macros.
+
 * Tue Apr 14 2020 Shlomi Fish <shlomif@shlomifish.org> - 5.22.1-1
 - New version
 
