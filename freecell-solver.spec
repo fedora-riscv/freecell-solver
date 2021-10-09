@@ -3,7 +3,7 @@
 %global develname lib%{name}-devel
 
 Name: freecell-solver
-Version: 6.4.0
+Version: 6.6.0
 Release: 1%{?dist}
 License: MIT
 Source0: https://fc-solve.shlomifish.org/downloads/fc-solve/%{name}-%{version}.tar.xz
@@ -172,6 +172,9 @@ chmod a-x "$dest/$bn"
 find %{buildroot} -name *.a -delete
 
 %changelog
+* Sat Oct 09 2021 Shlomi Fish <shlomif@shlomifish.org> 6.6.0-1
+- New version
+
 * Tue Sep 28 2021 Shlomi Fish <shlomif@shlomifish.org> 6.4.0-1
 - New version
 
