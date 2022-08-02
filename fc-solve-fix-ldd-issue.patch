@@ -1,0 +1,39 @@
+diff --git a/fc-solve/source/run-tests.pl b/fc-solve/source/run-tests.pl
+index e49988a0f..4575621a7 100644
+--- a/fc-solve/source/run-tests.pl
++++ b/fc-solve/source/run-tests.pl
+@@ -107,33 +107,7 @@ my %binaries;
+     } values %{ FC_Solve::Test::Valgrind::Data->get_hash };
+ 
+ use Digest ();
+-if ( $FC_Solve::Paths::Base::IS_WIN || $force_rebuild )
+-{
+-    ++$rerun;
+-}
+-else
+-{
+-    foreach my $prog ( keys %progs )
+-    {
+-        say $prog;
+-        die if !-e $prog;
+-        foreach my $bin ( $prog, `ldd "$prog"` =~ m# => (\S+)#g )
+-        {
+-            say "bin $prog $bin";
+-            $progs{$prog}{binaries}{$bin} //= (
+-                $binaries{$bin} //= do
+-                {
+-                    Digest->new('SHA-256')->addfile($bin)->b64digest;
+-                }
+-            );
+-        }
+-        my $val = $cache->get( $progs{$prog} );
+-        if ( !$val )
+-        {
+-            ++$rerun;
+-        }
+-    }
+-}
++++$rerun;
+ $glob_was_set ||= $exclude_re_s;
+ 
+ sub myglob

@@ -7,6 +7,7 @@ Version: 6.6.0
 Release: 3%{?dist}
 License: MIT
 Source0: https://fc-solve.shlomifish.org/downloads/fc-solve/%{name}-%{version}.tar.xz
+Patch1: fc-solve-fix-ldd-issue.patch
 URL: https://fc-solve.shlomifish.org/
 Summary: The Freecell Solver Executable
 
@@ -146,6 +147,7 @@ Freecell Solver from within your programs.
 
 %prep
 %setup -q
+%patch1 -p3 -b .fix-ldd-check
 
 %build
 # The game limit flags are recommended by the PySolFC README.
@@ -172,6 +174,9 @@ chmod a-x "$dest/$bn"
 find %{buildroot} -name *.a -delete
 
 %changelog
+* Tue Aug 02 2022 Shlomi Fish <shlomif@shlomifish.org> 6.6.0-3
+- Add fc-solve-fix-ldd-issue.patch to fix run-tests.pl ldd-output processing
+
 * Thu Jul 21 2022 Fedora Release Engineering <releng@fedoraproject.org> - 6.6.0-3
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_37_Mass_Rebuild
 
