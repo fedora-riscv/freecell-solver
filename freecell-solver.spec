@@ -175,8 +175,9 @@ chmod a-x "$dest/$bn"
 find %{buildroot} -name *.a -delete
 
 %changelog
-* Tue Aug 02 2022 Shlomi Fish <shlomif@shlomifish.org> 6.6.0-3
+* Wed Aug 03 2022 Shlomi Fish <shlomif@shlomifish.org> 6.6.0-3
 - Add fc-solve-fix-ldd-issue.patch to fix run-tests.pl ldd-output processing
+- Add BuildRequires on python3-devel.
 
 * Thu Jul 21 2022 Fedora Release Engineering <releng@fedoraproject.org> - 6.6.0-3
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_37_Mass_Rebuild
